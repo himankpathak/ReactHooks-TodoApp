@@ -13,6 +13,12 @@ function toggleComplete(id, todos, setTodos) {
   }));
 }
 
+function delTodo(id, todos, setTodos) {
+  setTodos(
+    [...todos.filter(todo => todo.id !== id)]
+    );
+}
+
 function App() {
   const [todos, setTodos] = useState(
     [
@@ -36,10 +42,9 @@ function App() {
 
   return (
     <div className="App">
-      <Todos
-      todos={todos}
+      <Todos todos={todos}
       toggleComplete={(id) => { toggleComplete(id, todos, setTodos) }} 
-      />
+      delTodo={(id) => { delTodo(id, todos, setTodos) }} />
     </div>
   );
 }
