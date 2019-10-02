@@ -3,6 +3,16 @@ import Todos from './components/Todos'
 
 import './App.css';
 
+function toggleComplete(id, todos, setTodos) {
+  setTodos(
+  todos.map( todo => {
+    if(todo.id === id) {
+      todo.completed = !todo.completed
+    }
+    return todo;
+  }));
+}
+
 function App() {
   const [todos, setTodos] = useState(
     [
@@ -23,10 +33,13 @@ function App() {
       }
     ]
   );
-  // console.log(todos);
+
   return (
     <div className="App">
-      <Todos todos={todos} />
+      <Todos
+      todos={todos}
+      toggleComplete={(id) => { toggleComplete(id, todos, setTodos) }} 
+      />
     </div>
   );
 }

@@ -3,9 +3,8 @@ import TodoItem from './TodoItem';
 import PropTypes from 'prop-types';
 
 function Todos(props) {
-  console.log(props.todos);
   return props.todos.map((todo) => (
-    <TodoItem key={todo.id} todo={todo} />
+    <TodoItem key={todo.id} todo={todo} toggleComplete={props.toggleComplete} />
   ));
 }
 
