@@ -1,12 +1,16 @@
 import React from 'react';
+import TodoItem from './TodoItem';
+import PropTypes from 'prop-types';
 
 function Todos(props) {
   console.log(props.todos);
-  return (
-    <div>
-      <h1>TODOS</h1>
-    </div>
-  );
+  return props.todos.map((todo) => (
+    <TodoItem key={todo.id} todo={todo} />
+  ));
+}
+
+Todos.propTypes = {
+  todos: PropTypes.array.isRequired
 }
 
 export default Todos;
