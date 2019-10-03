@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function getStyle(todo) {
 	return {
-		background: 'grey',
+		background: '#cfcfcf',
 		padding: '10px',
 		borderBottom: '1px #ccc dotted',
 		textDecoration: todo.completed ? 'line-through' : 'none',
