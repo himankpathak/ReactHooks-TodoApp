@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types';
 
 function onSubmitTodo(e, props, title, setTitle) {
     e.preventDefault();
@@ -28,3 +29,7 @@ export default function AddTodo(props) {
         </form>
     )
 }
+
+AddTodo.propTypes = {
+	addTodo: PropTypes.func.isRequired
+  }
