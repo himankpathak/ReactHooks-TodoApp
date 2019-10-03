@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import Header from './components/layout/Header'
-import Todos from './components/Todos'
-import AddTodo from './components/AddTodo'
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/layout/Header';
+import Todos from './components/Todos';
+import AddTodo from './components/AddTodo';
+import About from './components/pages/About';
 
 import './App.css';
 
@@ -29,6 +31,16 @@ function addTodo(title, todos, setTodos){
 function delTodo(id, todos, setTodos) {
 	setTodos(
 		[...todos.filter(todo => todo.id !== id)]
+
+function TodoMain(props) {
+	const { todos, setTodos } = props;
+	return(
+		<React.Fragment>
+			<AddTodo addTodo={(title) => {addTodo(title, todos, setTodos) }} />
+			<Todos todos={todos}
+			toggleComplete={(id) => { toggleComplete(id, todos, setTodos) }}
+			delTodo={(id) => { delTodo(id, todos, setTodos) }} />
+		</React.Fragment>
 	);
 }
 
@@ -54,15 +66,21 @@ function App() {
 	);
 
 	return (
-		<div className="App">
-			<div className="container">
-				<Header />
-				<AddTodo addTodo={(title) => {addTodo(title, todos, setTodos) }} />
-				<Todos todos={todos}
-				toggleComplete={(id) => { toggleComplete(id, todos, setTodos) }}
-				delTodo={(id) => { delTodo(id, todos, setTodos) }} />
+		<Router>
+			<div className="App">
+				<div className="container">
+					<Header />
+					<Switch>
+						<Route exact path="/">
+							<TodoMain todos={todos} setTodos={setTodos} />
+						</Route>
+						<Route path="/about">
+							<About />
+						</Route>
+					</Switch>
+				</div>
 			</div>
-		</div>
+		</Router>
 	);
 }
 
